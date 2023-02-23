@@ -48,17 +48,5 @@ USER download
 EXPOSE 3000
 EXPOSE 4200
 
-# Flood server in development mode
-ENTRYPOINT ["npm", "--prefix=/usr/src/app/", "run", "start:development:server", "--", "--host=0.0.0.0"]
-
-# Then, to start a debugging session of frontend:
-# docker exec -it ${container_id} npm --prefix=/usr/src/app/ run start:development:client
-
-# rtorrent-flood image
-FROM docker.io/jesec/rtorrent:master as rtorrent
-FROM flood as rtorrent-flood
-
-# Copy rTorrent
-COPY --from=rtorrent / /
-
-ENTRYPOINT ["npm", "--prefix=/usr/src/app/", "run", "start:development:server", "--", "--host=0.0.0.0", "--rtorrent"]
+# Flood server in production mode
+ENTRYPOINT ["npm", "run", "start", "--"]
