@@ -397,8 +397,6 @@ class TransmissionClientGatewayService extends ClientGatewayService {
                 ratio = torrent.uploadedEver / torrent.downloadedEver;
               }
 
-              ratio = ratio.toFixed(2);
-
               const torrentProperties: TorrentProperties = {
                 hash: torrent.hashString.toUpperCase(),
                 name: torrent.name,
